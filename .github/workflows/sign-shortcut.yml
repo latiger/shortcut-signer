@@ -16,7 +16,7 @@ jobs:
       - name: Shortcut 서명
         run: |
           shortcuts sign \
-            --mode people-who-know-me \
+            --mode anyone \
             --input ./MySC.shortcut \
             --output ./MySignedSC.shortcut
 
