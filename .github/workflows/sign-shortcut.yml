@@ -1,0 +1,27 @@
+﻿name: Sign Shortcut
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sign:
+    runs-on: macos-latest
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Shortcut 서명
+        run: |
+          shortcuts sign \
+            --mode people-who-know-me \
+            --input ./MySC.shortcut \
+            --output ./MySignedSC.shortcut
+
+      - name: 서명된 파일 업로드 (Artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: signed-shortcut
+          path: ./MySignedSC.shortcut
